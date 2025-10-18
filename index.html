@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id="qr-form" class="section">
+        <p class="header">QR Code Generator</p>
+        <label for="url-link">Enter your URL</label>
+        <img class="link-arrow arrow" src="https://cdn-icons-png.flaticon.com/64/16946/16946770.png" alt="arrow-pointing-down">
+        <input type="url" id="url-link" placeholder="https://example.com" name="link" required title="Please enter a link" oninvalid="this.setCustomValidity('Please enter a link in this format: https://example.com')" oninput="this.setCustomValidity('')">
+        <button id="submit" type="submit"><span>Generate QR</span></button>
+    </form>
+    <div class="output-section section" id="output-section" style="display: none;">
+        <p id="website-name-display"></p>
+        <img class="arrow" src="https://cdn-icons-png.flaticon.com/64/16946/16946770.png" alt="arrow-pointing-down">
+        <div class="qr-code" id="qr-code"></div>
+        <button id="download-button"><span>Download QR</span></button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
