@@ -27,10 +27,22 @@ body {
     border: 1px solid gray;
     border-radius: 30px;
 }
-.qr-code {
+#qr-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
+    margin: 20px;
+    height: fit-content;
+}
+.qr-code {
     border-radius: 10px;
     background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 label {
     margin-bottom: 10px;
@@ -42,18 +54,104 @@ button {
     margin-top: 20px;
     padding: 10px 20px;
     border-radius: 10px;
-    border: none;
+    border: 1px solid gray;
     background-color: rgb(92, 184, 130);
     color: #fff;
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    box-shadow: 1px 2px 2px black;
 }
 span {
     z-index: 2;
     position: relative;
 }
+#advanced-options {
+    background-color: rgb(92, 184, 130);
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    border-radius: 10px;
+    z-index: 9;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    top: 25%;
+}
+#advanced-options.active {
+    transform: scale(1);
+}
+#advanced-options button {
+    font-size: 3rem;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background-color: transparent;
+    margin: 0;
+}
+.advanced-header {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.advanced-header p {
+    margin-bottom: 0;
+}
+#advanced-options img {
+    filter: invert(0);
+    width: 25px;
+}
+#advanced-options button::before, #advanced-options button::after {
+    content: none;
+}
+#advanced-options label {
+    font-size: 1rem;
+}
+#advanced-options input, #advanced-options select {
+    padding: 2px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+#advanced-options select {
+    width: 85%;
+}
+#overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.color-selectors {
+    display: flex;
+    gap: 10px;
+}
+.color-selector {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.color-selector input {
+    width: 90%;
+} 
 button:hover {
     transform: scale(1.03);
     &::after {
@@ -113,7 +211,7 @@ p {
 .arrow {
     width: 50px;
     margin-bottom: 10px;
-    transform: rotate(25deg);
+    transform: rotate(30deg);
     filter: invert(1);
 }
 .link-arrow {
@@ -122,7 +220,6 @@ p {
 .header {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    position: absolute;
     top: 30px;
     width: 100%;
     text-align: center;
@@ -130,12 +227,22 @@ p {
 #qr-form {
     position: relative;
 }
+.advanced-button {
+    color: #000;
+    font-size: 0.8rem;
+    background-color: #f7f7f7;
+    margin-top: 0;
+}
+.advanced-button::before, .advanced-button::after {
+    background: #f7f7f7;
+}
 
 @media screen and (max-width: 640px) {
     body {
         padding: 0;
         flex-direction: column;
         background: #8e5fb9;
+        height: 85vh;
     }
     p {
         font-size: 1.25rem;
@@ -146,26 +253,39 @@ p {
     label {
         font-size: 1.25rem;
     }
+    input {
+        font-size: 1rem;
+        width: 100%;
+    }
     .arrow {
-        width: 30px;
+        width: 25px;
     }
     .section {
         width: 100%;
-        height: 70%;
+        height: fit-content;
         margin: 0;
+        margin-top: 20px;
+        margin-bottom: 10px;
         border: none;
         border-radius: 0;
         background: #8e5fb9;
+        padding-top: 0;
         justify-content: start;
     }
+    #advanced-options {
+        padding: 20px;
+    }
     #qr-form {
-        height: 40%;
+        height: fit-content;
         justify-content: end;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
     }
     .header {
         top: 20px;
     }
-    img {
+    canvas {
         width: 200px;
         object-fit: cover;
     }

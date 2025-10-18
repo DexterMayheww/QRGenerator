@@ -7,13 +7,43 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form id="qr-form" class="section">
-        <p class="header">QR Code Generator</p>
-        <label for="url-link">Enter your URL</label>
-        <img class="link-arrow arrow" src="https://cdn-icons-png.flaticon.com/64/16946/16946770.png" alt="arrow-pointing-down">
-        <input type="url" id="url-link" placeholder="https://example.com" name="link" required title="Please enter a link" oninvalid="this.setCustomValidity('Please enter a link in this format: https://example.com')" oninput="this.setCustomValidity('')">
-        <button id="submit" type="submit"><span>Generate QR</span></button>
-    </form>
+    <div class="section">
+        <form id="qr-form">
+            <p class="header">QR Code Generator</p>
+            <label for="url-link">Enter your URL</label>
+            <img class="link-arrow arrow" src="https://cdn-icons-png.flaticon.com/64/16946/16946770.png" alt="arrow-pointing-down">
+            <input type="url" id="url-link" placeholder="https://example.com" name="link" required title="Please enter a link" oninvalid="this.setCustomValidity('Please enter a link in this format: https://example.com')" oninput="this.setCustomValidity('')">
+            <button id="submit" type="submit"><span>Generate QR</span></button>
+        </form>
+    
+        <button class="advanced-button"><span>Advanced</span></button>
+    </div>
+    <div id="overlay"></div>
+    <div id="advanced-options" class="section">
+        <div class="advanced-header">
+            <p>Advanced Options</p>
+            <button id="close-advanced"><img src="https://cdn-icons-png.flaticon.com/32/1828/1828778.png " alt="cross"></button>
+        </div>
+        <div class="color-selectors">
+            <div class="dot-color color-selector">
+                <label for="dot-color">QR Dot Color</label>
+                <input type="color" id="dot-color" value="#000000">
+            </div>
+            <div class="back-color color-selector">
+                <label for="background-color">Background Color</label>
+                <input type="color" id="background-color" value="#ffffff">
+            </div>
+        </div>
+        <label for="dot-type">Dot Type</label>
+        <select id="dot-type">
+            <option value="square">Square</option>
+            <option value="dots">Dots</option>
+            <option value="rounded">Rounded</option>
+            <option value="extra-rounded">Extra Rounded</option>
+            <option value="classy">Classy</option>
+            <option value="classy-rounded">Classy Rounded</option>
+        </select>
+    </div>
     <div class="output-section section" id="output-section" style="display: none;">
         <p id="website-name-display"></p>
         <img class="arrow" src="https://cdn-icons-png.flaticon.com/64/16946/16946770.png" alt="arrow-pointing-down">
@@ -21,7 +51,7 @@
         <button id="download-button"><span>Download QR</span></button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
