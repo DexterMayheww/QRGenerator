@@ -10,10 +10,12 @@
     <div class="section">
         <form id="qr-form">
             <p class="header">QR Code Generator</p>
-            <label for="url-link">Enter your URL</label>
+            <label for="url-link">Enter your URL and the QR will be generated automatically!</label>
             <img class="link-arrow arrow" src="https://cdn-icons-png.flaticon.com/64/16946/16946770.png" alt="arrow-pointing-down">
-            <input type="url" id="url-link" placeholder="https://example.com" name="link" required title="Please enter a link" oninvalid="this.setCustomValidity('Please enter a link in this format: https://example.com')" oninput="this.setCustomValidity('')">
-            <button id="submit" type="submit"><span>Generate QR</span></button>
+            <div class="link-input">
+                <input type="url" id="url-link" placeholder="https://example.com" name="link" required title="Please enter a link" oninvalid="this.setCustomValidity('Please enter a link in this format: https://example.com')" oninput="this.setCustomValidity('')">
+                <button id="clear-input" class="no-style-btn"><img src="https://cdn-icons-png.flaticon.com/32/1828/1828778.png " alt="cross"></button>
+            </div>
         </form>
     
         <button class="advanced-button"><span>Advanced</span></button>
@@ -22,7 +24,29 @@
     <div id="advanced-options" class="section">
         <div class="advanced-header">
             <p>Advanced Options</p>
-            <button id="close-advanced"><img src="https://cdn-icons-png.flaticon.com/32/1828/1828778.png " alt="cross"></button>
+            <button id="close-advanced" class="no-style-btn"><img src="https://cdn-icons-png.flaticon.com/32/1828/1828778.png " alt="cross"></button>
+        </div>
+        <label for="dot-type">Dot Type</label>
+        <select id="dot-type">
+            <option value="square">Square</option>
+            <option value="dots">Dots</option>
+            <option value="rounded">Rounded</option>
+            <option value="extra-rounded">Extra Rounded</option>
+            <option value="classy">Classy</option>
+            <option value="classy-rounded">Classy Rounded</option>
+        </select>
+        <div class="qr-size">
+            <label for="size-selector">QR Code Size</label>
+            <select name="" id="size-selector">
+                <option value="100">100 x 100</option>
+                <option value="200" selected>200 x 200</option>
+                <option value="300">300 x 300</option>
+                <option value="500">500 x 500</option>
+                <option value="1000">1000 x 1000</option>
+                <option value="2000">2000 x 2000</option>
+                <option value="5000">5000 x 5000</option>
+            </select>
+            <p class="size-note">Note: Size shown in the website will always be <span>200 x 200</span>. Downloading will give you your selected size.</p>
         </div>
         <div class="color-selectors">
             <div class="dot-color color-selector">
@@ -34,15 +58,6 @@
                 <input type="color" id="background-color" value="#ffffff">
             </div>
         </div>
-        <label for="dot-type">Dot Type</label>
-        <select id="dot-type">
-            <option value="square">Square</option>
-            <option value="dots">Dots</option>
-            <option value="rounded">Rounded</option>
-            <option value="extra-rounded">Extra Rounded</option>
-            <option value="classy">Classy</option>
-            <option value="classy-rounded">Classy Rounded</option>
-        </select>
     </div>
     <div class="output-section section" id="output-section" style="display: none;">
         <p id="website-name-display"></p>

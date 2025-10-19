@@ -11,20 +11,30 @@ const dotTypeInput = document.getElementById('dot-type');
 const backgroundColorInput = document.getElementById('background-color');
 const closeAdvancedBtn = document.getElementById('close-advanced');
 const overlay = document.getElementById('overlay');
+const sizeSelector = document.getElementById('size-selector');
+const clearInput = document.getElementById('clear-input');
 
 let qrCode;
 let websiteName;
 
-// Function to generate and update the QR code
+let size = 200;
+
 const generateQRCode = () => {
     const url = urlInput.value;
 
     if (url) {
         qrCodeContainer.innerHTML = '';
 
+        if(size >= 500) {
+            qrCodeContainer.style.padding  = '10px';
+        }
+        else {
+            qrCodeContainer.style.padding = '0';
+        }
+
         qrCode = new QRCodeStyling({
-            width: 300,
-            height: 300,
+            width: size,
+            height: size,
             data: url,
             margin: 10,
             qrOptions: {
@@ -43,8 +53,12 @@ const generateQRCode = () => {
             }
         });
         qrCode.append(qrCodeContainer);
+
         outputSection.style.display = 'flex';
         document.body.style.justifyContent = 'start';
+        downloadBtn.classList.remove('invalid');
+
+        advancedOptions.classList.add('output-visible');
 
         const parser = document.createElement('a');
         parser.href = url;
@@ -85,7 +99,10 @@ function getDomainName(hostname) {
   return domain;
 }
 
-// Event listener for the advanced button
+clearInput.addEventListener('click', () => {
+    urlInput.value = '';
+});
+
 advancedBtn.addEventListener('click', () => {
     advancedOptions.classList.add('active');
     overlay.classList.add('active');
@@ -101,7 +118,12 @@ overlay.addEventListener('click', () => {
     overlay.classList.remove('active');
 });
 
-// Event listeners for advanced option changes to update QR code in real-time
+urlInput.addEventListener('input', generateQRCode);
 dotColorInput.addEventListener('input', generateQRCode);
 dotTypeInput.addEventListener('change', generateQRCode);
 backgroundColorInput.addEventListener('input', generateQRCode);
+
+sizeSelector.addEventListener('change', () => {
+    size = sizeSelector.value;
+    generateQRCode();
+});
